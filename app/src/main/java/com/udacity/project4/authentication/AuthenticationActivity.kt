@@ -31,7 +31,6 @@ class AuthenticationActivity : AppCompatActivity() {
         button.setOnClickListener {
             launchSignInFlow()
         }
-        // TODO: If the user was authenticated, send him to RemindersActivity
         if (auth.currentUser != null) {
             navToMainScreen()
         }
@@ -42,15 +41,14 @@ class AuthenticationActivity : AppCompatActivity() {
         startActivity(Intent(this, RemindersActivity::class.java))
     }
 
-    // TODO: Implement the create account and sign in using FirebaseUI, use sign in using email and sign in using Google
     private fun launchSignInFlow() {
         val providers = arrayListOf(
-            AuthUI.IdpConfig.EmailBuilder().build(), AuthUI.IdpConfig.GoogleBuilder().build()
+                AuthUI.IdpConfig.EmailBuilder().build(), AuthUI.IdpConfig.GoogleBuilder().build()
         )
         startActivityForResult(
-            AuthUI.getInstance().createSignInIntentBuilder().setAvailableProviders(
-                providers
-            ).build(), SIGN_IN_RESULT_CODE
+                AuthUI.getInstance().createSignInIntentBuilder().setAvailableProviders(
+                        providers
+                ).build(), SIGN_IN_RESULT_CODE
         )
     }
 
